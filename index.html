@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1561.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 16.0px; font: 14.0px 'Courier New'; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 16.0px; font: 14.0px 'Courier New'; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff; min-height: 16.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">﻿&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;meta charset='utf-8' /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;title&gt;&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;script src='https://jps.github.io/jps.json'&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>body { margin:0; padding:0; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>#map { position:absolute; top:0; bottom:0; width:100%; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;style&gt;</span></p>
+<p class="p1"><span class="s1">#map {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>position: fixed;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>width:66%;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">#features {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>width: 34%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>margin-left: 66%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>font-family: Helvetica;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>overflow-y: scroll;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>background-color: #AAFAC8;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">section {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>padding:<span class="Apple-converted-space">  </span>25px 50px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>line-height: 25px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>border-bottom: 1px solid #ddd;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>opacity: 0.25;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>font-size: 20px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">section.active {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>opacity: 1;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">section:last-child {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>border-bottom: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>margin-bottom: 1000px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;div id='map'&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div id='features' class="card"&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;section id="intro" class='active'&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;h1&gt;&lt;strong&gt;Jason Schneider&lt;/strong&gt;&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;h5&gt;&lt;blockquote&gt;&lt;i&gt;`A thousand words will not leave so deep an impression as one deed.`</span></p>
+<p class="p1"><span class="s1">- Henrik Ibsen &lt;/i&gt;&lt;/blockquote&gt;&lt;/h5&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;p&gt;Hello and thank you for stopping by.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;p&gt;I am a multi-faceted creator of dynamic and cathartic content across a wide spectrum of media formats.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;p&gt;I have had the great fortune to be able to live and work around this earth, and have truly cherished the collaborrations I have facilitated along the way.<span class="Apple-converted-space">  </span>&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;p&gt;<span class="Apple-converted-space">  </span>Have a look to see where I've been and what I've been up to over the years... &lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;p&gt;&lt;i&gt;(p.s. the traffic data is real-time and provided by mapbox in case you happened to be wondering about the road conditions :)&lt;/i&gt;&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;section id="blb"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;h2&gt;Bryant-Lake Bowl // Minneapolis, Minnesota&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;h3&gt;&lt;i&gt;Theater Technician&lt;/i&gt;&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;h6&gt;&lt;i&gt;2007.07.01 - 2008.10.01&lt;/i&gt;&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>&lt;p&gt;&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;li&gt;Designed and Managed light and sound technical production for plays, dance performances, concerts, and business conferences at a busy 100 seat venue&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;li&gt;Worked collaboratively with clients to determine and implement desired technical aspects for scheduled performances&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;li&gt;Assisted with the maintenance and general upkeep of the theatre&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="guthrie"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h2&gt;Guthrie Theater // Minneapolis, Minnesota&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h3&gt;&lt;i&gt;Stage Door Receptionist&lt;/i&gt;&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h6&gt;&lt;i&gt;2007.07.01 - 2008.07.01&lt;/i&gt;&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;p&gt;&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Responsible for facilitating entrance and exit of all artists, actors and employees into the largest regional theater in America&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Carried out all administrative duties, including sorting and sending mail, fielding calls, and handling all customer inquiries&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Remained vigilant and enforced security in a high-profile environment&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="cbs"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h2&gt;CBS Interactive // London, United Kingdom&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h3&gt;&lt;i&gt;Call Centre Representative&lt;/i&gt;&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h6&gt;&lt;i&gt;2009.01.01 - 2010.07.01&lt;/i&gt;&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;p&gt;&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Contacted IT department heads on behalf of EMC, a Fortune 500 company responsible for implementing IT solutions across a broad spectrum of global industry&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Employed numerous conversational tactics to aid in the dissemination of preeminent and marketable product knowledge&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="vinylpimp"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h2&gt;Vinyl Pimp // London, United Kingdom&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h3&gt;&lt;i&gt;Resident Adviser&lt;/i&gt;&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h6&gt;&lt;i&gt;2008.11.01 - 2010.06.01&lt;/i&gt;&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;p&gt;&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Assisted in the day-to-day operations involved in running an online used record shop based in Hackney Wick, London&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Developed cutting edge database and asset management resources&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Maintained and developed website&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Assisted in advertising and running events used to promote the company&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="rff"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h2&gt;Resources for the Future // Washington, Distict of Columbia&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h3&gt;&lt;i&gt;Online Communications/IT Helpdesk &lt;/i&gt;&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h6&gt;&lt;i&gt;2010.10.01 - 2012.04.01&lt;/i&gt;&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;p&gt;&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Responsible for maintaining and updating the Resources for the Future website employing numerous frameworks and database management schema&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Produced, recorded, and edited audio and video podcasts and assisted in webcasting live events&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Aggressively worked to expand Resources for the Future’s social media footprint across a wide array of platforms&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Carried out administrative duties as front desk receptionist&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Provided consistent and high level IT support for desktops and laptops in a Microsoft Windows environment&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Maintained a powerful and adaptable inventory of equipment for computing applications ranging from high end shared statistical modeling applications to lightweight a/v/ presentation laptops&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Actively engaged in systemwide antivirus surveillance, prevention, and damage mitigation&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="hailey"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h2&gt;Hailley Howard Photography // Laguna Beach, California&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h3&gt;&lt;i&gt;Assistant &lt;/i&gt;&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h6&gt;&lt;i&gt;2014.03.01 - 2015.04.01&lt;/i&gt;&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;p&gt;&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Provided assistance at professional photography shoots for fashion, weddings, portraiture, and editorial work&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Digitally edited photographs through a plethora of software platforms&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Maintained and developed a website while remaining eternally cognizant of shifting design and technological trends&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Developed and implemented various social media initiatives in an effort to expand online brand presence&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Assisted in the day-to-day operations involved with running a small business&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="guitarcenter1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h2&gt;Guitar Center // Lake Forest, California&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h3&gt;&lt;i&gt;Sales Associate - Guitars &lt;/i&gt;&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h6&gt;&lt;i&gt;2014.08.01 - 2016.02.01&lt;/i&gt;&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;p&gt;&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Assess and triage customer service situations to maintain optimum sales efficiency&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Set prices for used merchandise based on fluctuating market values&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Developed effective logistical pathways to customer satisfaction in an environment in which time is the definitive commodity&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;If you've got time to lean, you've got time to clean&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="amazon"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h2&gt;Amazon // Shakopee, Minnesota&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h3&gt;&lt;i&gt;Material Sorter &lt;/i&gt;&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h6&gt;&lt;i&gt;2016.08.01 - 2016.12.31&lt;/i&gt;&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;p&gt;&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Physically manipulated packages from an unsorted, chaotic mess, to a logistically optimized state ready for delivery to customers&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Developed and implemented best practices methodology in terms of visual signage&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Operated a pallet jack&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="ups"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h2&gt;UPS // Shakopee, Minnesota&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h3&gt;&lt;i&gt;Pre-Load Package Handler &lt;/i&gt;&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h6&gt;&lt;i&gt;2016.12.31 - 2017.05.01&lt;/i&gt;&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;p&gt;&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Sorted and loaded packages for delivery onto UPS's iconic trucks &lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Handled packages being sent for delivery in an area market that is amongst the top 15th percentile in the United States in terms of media share&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Maintained stringent safety standards to ensure customer satisfaction&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="guitarcenter2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h2&gt;Guitar Center // Roseville, Minnesota&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h3&gt;&lt;i&gt;Sales Associate - Pro Audio&lt;/i&gt;&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;h6&gt;&lt;i&gt;2017.08.01 - 2018.02.01&lt;/i&gt;&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>&lt;p&gt;&lt;ul&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>&lt;li&gt;Assess and triage customer service situations to maintain optimum sales efficiency&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>&lt;li&gt;Set prices for used merchandise based on fluctuating market values&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>&lt;li&gt;Developed effective logistical pathways to customer satisfaction in an environment in which time is the definitive commodity&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>&lt;li&gt;If you've got time to lean, you've got time to clean&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="education"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h1&gt;Education&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="csbsju"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;h2&gt;St. John's University // Collegeville, Minnesota&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;h6&gt;B.A. Theater&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="umn"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;h2&gt;University of Minnesota&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;h4&gt;&lt;i&gt;Partial Completion&lt;/i&gt;&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;h6&gt;Masters of Geographic Information Science Program&lt;/h6&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1">mapboxgl.accessToken = 'pk.eyJ1IjoicHJtbnRvYnNydnIiLCJhIjoiY2l6a3F1eXAyMDBkeTJ3bHJ3a2xwYmRjYiJ9.KLHXMXS1rjUhSBldIVJ9eg';</span></p>
+<p class="p1"><span class="s1">var map = new mapboxgl.Map({</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>container: 'map',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>style: 'mapbox://styles/prmntobsrvr/cjgx3scyo000n2so21epjlssw',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>bearing: 23.5,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>center: [-60.642,39.974],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>zoom: 2.14,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>speed: 0.8,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>pitch: 33</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">var title = document.getElementById('chapters-title');</span></p>
+<p class="p1"><span class="s1">var description = document.getElementById('chapters-description');</span></p>
+<p class="p1"><span class="s1">var chapters = {</span></p>
+<p class="p1"><span class="s1">'intro': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>bearing: 23.5,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>center: [-60.642,39.974],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>zoom: 2.14159,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>speed: .7,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>pitch: 33</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>'blb': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>center: [-93.2902 , 44.9485],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>bearing: 35,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>zoom: 14.9,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>speed: 0.4,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>pitch: 0</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>'guthrie': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>bearing: -77,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>center: [-93.2553, 44.9778],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>zoom: 15.55,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>speed: 0.4,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>pitch: 66</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>'cbs': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>bearing: -123,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>center: [-0.0890 , 51.5263],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>zoom: 15.61,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>speed: 0.4,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>pitch: 60</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>'vinylpimp': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>bearing: 123,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>center: [-0.0262 , 51.5442],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>zoom: 16,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>speed: 0.4,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>pitch: 77</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>'rff': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>bearing: 180,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>center: [-77.0375 , 38.9092],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>zoom: 16,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>pitch: 66,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>speed: 0.5</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>'hailey': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>bearing: 333,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>center: [-117.7664 , 33.5358],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>zoom: 13.44,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>speed: 0.4,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>pitch: 23</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>'guitarcenter1': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>bearing: 0,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>center: [-117.7067 , 33.6181],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>zoom: 9.6,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>speed: 0.2,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>pitch: 21.5</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>'amazon': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>bearing: 33,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>center: [-93.4431 , 44.7883],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>zoom: 14.6,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>speed: 0.4,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>pitch: 60</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>'ups': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>bearing: 333,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>center: [-93.1076 , 44.8291],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>zoom: 13.6,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>speed: 0.6,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>pitch: 60</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>'guitarcenter2': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>bearing: 0,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>center: [-93.1682 , 45.0149],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>zoom: 12.6,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>speed: 0.6,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>pitch: 33</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>'education': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>bearing: 0,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>center: [-93.587,45.115],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>zoom: 7,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>speed: 0.6,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>pitch: 0</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>'csbsju': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>bearing: -158.59,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>center: [-94.393805,45.583038],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>zoom: 17,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>speed: 0.6,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>pitch: 58.50</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>'umn': {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>bearing: -78.99,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>center: [-93.236597,44.975099],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>zoom: 13.5,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>speed: 0.6,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>pitch: 60</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1">};</span></p>
+<p class="p1"><span class="s1">// On every scroll event, check which element is on screen</span></p>
+<p class="p1"><span class="s1">window.onscroll = function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>var chapterNames = Object.keys(chapters);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>for (var i = 0; i &lt; chapterNames.length; i++) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>var chapterName = chapterNames[i];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>if (isElementOnScreen(chapterName)) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">           </span>setActiveChapter(chapterName);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">           </span>break;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">       </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>}</span></p>
+<p class="p1"><span class="s1">};</span></p>
+<p class="p1"><span class="s1">var activeChapterName = 'intro';</span></p>
+<p class="p1"><span class="s1">function setActiveChapter(chapterName) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>if (chapterName === activeChapterName) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>map.flyTo(chapters[chapterName]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>document.getElementById(chapterName).setAttribute('class', 'active');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>document.getElementById(activeChapterName).setAttribute('class', '');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>activeChapterName = chapterName;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">function isElementOnScreen(id) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>var element = document.getElementById(id);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>var bounds = element.getBoundingClientRect();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>return bounds.top &lt; window.innerHeight &amp;&amp; bounds.bottom &gt; 0;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
